@@ -32,6 +32,12 @@ export function AudioButton({ soundSrc, icon, title }: AudioButtonProps) {
   };
 
   const handleOnVolumeChange = (volume: number) => {
+    if(volume === 0) {
+        setActive(false);
+        setVol(0.05);
+        return;
+    }
+
     setVol(volume);
     if (audioRef.current) {
       audioRef.current.volume = volume;
