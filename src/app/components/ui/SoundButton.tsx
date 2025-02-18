@@ -30,11 +30,12 @@ export function SoundButton({
   }, [volume]);
 
   return (
-    <div className="relative flex flex-col items-center">
+    <div className="relative flex flex-col items-center group">
       <button
         className={clsx(
           "w-[200px] h-[200px] drop-shadow-md rounded-md bg-slate-700 text-white text-2xl font-bold flex items-center justify-center hover:scale-105 transition-all",
-          active ? "opacity-100" : "opacity-65", className
+          active ? "opacity-100" : "opacity-65",
+          className
         )}
         onClick={onClick}
       >
@@ -55,7 +56,9 @@ export function SoundButton({
           step="0.01"
           value={volume}
           onChange={(e) => onVolumeChange(parseFloat(e.target.value))}
-          className="absolute bottom-[0px] w-[80%] bg-slate-800 accent-slate-400 rounded-md appearance-none cursor-pointer"
+          className="absolute bottom-[0px] w-[80%] opacity-0 group-hover:opacity-100
+          bg-slate-800 accent-slate-400 rounded-md appearance-none cursor-pointer
+           transition-all"
         />
       )}
     </div>

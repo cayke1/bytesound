@@ -1,13 +1,13 @@
-import { Cloud } from "lucide-react";
+import { FlameKindling } from "lucide-react";
 import { SoundButton } from "./ui/SoundButton";
 import { useEffect, useState } from "react";
 import { useActiveContext } from "@/context/IsSoundsActive";
 
-const rainSound = new Audio("/sound/rain.mp3");
-rainSound.loop = true;
-rainSound.volume = 0.05;
+const fireSound = new Audio("/sound/fire.mp3");
+fireSound.loop = true;
+fireSound.volume = 0.05;
 
-export function RainButton() {
+export function FireButton() {
   const [active, setActive] = useState(false);
   const { soundsActive } = useActiveContext();
   const [vol, setVol] = useState(0.05);
@@ -18,15 +18,15 @@ export function RainButton() {
 
   const handleOnVolumeChange = (volume: number) => {
     setVol(volume);
-    rainSound.volume = volume;
+    fireSound.volume = volume;
   };
 
   useEffect(() => {
     if (active && soundsActive) {
-      rainSound.play();
+      fireSound.play();
     } else {
-      rainSound.pause();
-      rainSound.currentTime = 0;
+      fireSound.pause();
+      fireSound.currentTime = 0;
     }
   }, [active, soundsActive]);
 
@@ -35,7 +35,7 @@ export function RainButton() {
       volume={vol}
       onVolumeChange={(volume) => handleOnVolumeChange(volume)}
       active={active && soundsActive}
-      icon={<Cloud size={64} />}
+      icon={<FlameKindling size={64} />}
       onClick={handleClick}
       className={`${soundsActive ? "cursor-pointer" : "cursor-not-allowed"}`}
     />
