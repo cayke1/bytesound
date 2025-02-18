@@ -1,11 +1,29 @@
 "use client";
 import { useActiveContext } from "@/context/IsSoundsActive";
-import { RainButton } from "./components/RainButton";
-import { PlayCircle, StopCircle } from "lucide-react";
+import {
+  Bird,
+  Cloud,
+  FlameKindling,
+  PlayCircle,
+  StopCircle,
+} from "lucide-react";
 import { motion } from "framer-motion";
-import { FireButton } from "./components/FireButton";
-import { BirdButton } from "./components/BirdButton";
+import { AudioButton } from "./components/AudioButton";
 
+const sounds = [
+  {
+    src: "/sound/rain.mp3",
+    icon: <Cloud size={64} />,
+  },
+  {
+    src: "/sound/fire.mp3",
+    icon: <FlameKindling size={64} />,
+  },
+  {
+    src: "/sound/bird.mp3",
+    icon: <Bird size={64} />,
+  },
+];
 export default function Home() {
   const { soundsActive, toggleActive } = useActiveContext();
 
@@ -34,9 +52,9 @@ export default function Home() {
           </>
         )}
       </motion.button>
-      <RainButton />
-      <FireButton />
-      <BirdButton />
+      {sounds.map((sound, index) => (
+        <AudioButton key={index} soundSrc={sound.src} icon={sound.icon} />
+      ))}
     </div>
   );
 }
