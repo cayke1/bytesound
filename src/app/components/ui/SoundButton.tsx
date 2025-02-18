@@ -9,6 +9,7 @@ interface SoundButtonProps {
   volume: number;
   onVolumeChange: (value: number) => void;
   className?: string;
+  title: string;
 }
 
 export function SoundButton({
@@ -18,6 +19,7 @@ export function SoundButton({
   volume,
   onVolumeChange,
   className,
+  title,
 }: SoundButtonProps) {
   const [showVolume, setShowVolume] = useState(false);
 
@@ -30,7 +32,7 @@ export function SoundButton({
   }, [volume]);
 
   return (
-    <div className="relative flex flex-col items-center group">
+    <div className="relative flex flex-col items-center group" title={title}>
       <button
         className={clsx(
           "w-[200px] h-[200px] drop-shadow-md rounded-md bg-slate-700 text-white text-2xl font-bold flex items-center justify-center hover:scale-105 transition-all",

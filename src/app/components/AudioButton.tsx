@@ -5,17 +5,16 @@ import { useActiveContext } from "@/context/IsSoundsActive";
 interface AudioButtonProps {
   soundSrc: string;
   icon: React.JSX.Element;
+  title: string;
 }
 
-export function AudioButton({ soundSrc, icon }: AudioButtonProps) {
+export function AudioButton({ soundSrc, icon, title }: AudioButtonProps) {
   const [active, setActive] = useState(false);
   const { soundsActive } = useActiveContext();
   const [vol, setVol] = useState(0.05);
-  
-  // Criar referência para o áudio para evitar recriação
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Inicializar o áudio apenas uma vez
   useEffect(() => {
     audioRef.current = new Audio(soundSrc);
     audioRef.current.loop = true;
@@ -52,6 +51,7 @@ export function AudioButton({ soundSrc, icon }: AudioButtonProps) {
 
   return (
     <SoundButton
+      title={title}
       volume={vol}
       onVolumeChange={handleOnVolumeChange}
       active={active && soundsActive}

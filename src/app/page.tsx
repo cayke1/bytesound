@@ -14,14 +14,17 @@ const sounds = [
   {
     src: "/sound/rain.mp3",
     icon: <Cloud size={64} />,
+    title: "🌧️Chuva",
   },
   {
     src: "/sound/fire.mp3",
     icon: <FlameKindling size={64} />,
+    title: "🔥Fogo",
   },
   {
     src: "/sound/bird.mp3",
     icon: <Bird size={64} />,
+    title: "🐦Pássaros",
   },
 ];
 export default function Home() {
@@ -53,7 +56,12 @@ export default function Home() {
         )}
       </motion.button>
       {sounds.map((sound, index) => (
-        <AudioButton key={index} soundSrc={sound.src} icon={sound.icon} />
+        <AudioButton
+          key={index}
+          soundSrc={sound.src}
+          icon={sound.icon}
+          title={sound.title}
+        />
       ))}
     </div>
   );
